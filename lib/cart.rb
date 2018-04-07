@@ -12,10 +12,16 @@ class Cart
     
     if @ordered_items.size == 2
       while @ordered_items.size > 0   # 當還有書籍時
-        total = total + 2 * PRICE * 0.95
-        @ordered_items[0] -= 1       # 刪除已計算過的書籍       
-        @ordered_items[1] -= 1       # 刪除已計算過的書籍
-        @ordered_items = @ordered_items.delete_if{ |x| x == 0 }
+        if @ordered_items.size == 2
+          total = total + 2 * PRICE * 0.95
+          @ordered_items[0] -= 1       # 刪除已計算過的書籍       
+          @ordered_items[1] -= 1       # 刪除已計算過的書籍
+          @ordered_items = @ordered_items.delete_if{ |x| x == 0 }
+        else
+          total += PRICE               # 把客戶賣得單集 1 本計入總價
+          @ordered_items[0] -= 1       # 刪除已計算過的書籍
+          @ordered_items = @ordered_items.delete_if{ |x| x == 0 }
+        end
       end
     else
       for item in @ordered_items do
