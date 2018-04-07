@@ -10,7 +10,10 @@ class Cart
     total = 0
     
     while @ordered_items.size > 0   # 當還有書籍時
-      if @ordered_items.size == 2
+      
+      if @ordered_items.size == 3
+        total += 3 * PRICE * 0.9
+      elsif @ordered_items.size == 2
         total += 2 * PRICE * 0.95
       else
         total += PRICE               # 把客戶賣得單集 1 本計入總價
