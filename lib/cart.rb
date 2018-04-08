@@ -11,7 +11,9 @@ class Cart
     
     while @ordered_items.size > 0   # 當還有書籍時
       
-      if @ordered_items.size == 4
+      if @ordered_items.size == 5
+        total += 5 * PRICE * 0.8
+      elsif @ordered_items.size == 4
         total += 4 * PRICE * 0.85
       elsif @ordered_items.size == 3
         total += 3 * PRICE * 0.9
